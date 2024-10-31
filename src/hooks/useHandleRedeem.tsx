@@ -118,13 +118,13 @@ async function algo(
       ALGORAND_HOST.algodPort
     );
     const txs = await redeemOnAlgorand(
-      algodClient,
+      algodClient as any,
       ALGORAND_TOKEN_BRIDGE_ID,
       ALGORAND_BRIDGE_ID,
       signedVAA,
       senderAddr
     );
-    const result = await signSendAndConfirmAlgorand(algodClient, txs);
+    const result = await signSendAndConfirmAlgorand(algodClient as any, txs);
     // TODO: fill these out correctly
     dispatch(
       setRedeemTx({
@@ -158,7 +158,7 @@ async function aptos(
   const tokenBridgeAddress = getTokenBridgeAddressForChain(CHAIN_ID_APTOS);
   try {
     const msg = await completeTransferAndRegister(
-      getAptosClient(),
+      getAptosClient() as any,
       tokenBridgeAddress,
       signedVAA
     );
@@ -391,7 +391,7 @@ async function injective(
     const tx = await broadcastInjectiveTx(
       wallet,
       walletAddress,
-      msg,
+      msg as any,
       "Wormhole - Complete Transfer"
     );
     dispatch(setRedeemTx({ id: tx.txHash, block: tx.height }));
@@ -478,7 +478,7 @@ async function sui(
       signedVAA
     );
     const response = await wallet.signAndExecuteTransactionBlock({
-      transactionBlock: tx,
+      transactionBlock: tx as any,
     });
     dispatch(
       setRedeemTx({

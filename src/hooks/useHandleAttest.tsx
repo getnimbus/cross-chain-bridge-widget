@@ -136,13 +136,13 @@ async function algo(
       ALGORAND_HOST.algodPort
     );
     const txs = await attestFromAlgorand(
-      algodClient,
+      algodClient as any,
       ALGORAND_TOKEN_BRIDGE_ID,
       ALGORAND_BRIDGE_ID,
       senderAddr,
       BigInt(sourceAsset)
     );
-    const result = await signSendAndConfirmAlgorand(algodClient, txs);
+    const result = await signSendAndConfirmAlgorand(algodClient as any, txs);
     const sequence = parseSequenceFromLogAlgorand(result);
     // TODO: fill these out correctly
     dispatch(
@@ -517,7 +517,7 @@ async function injective(
     const tx = await broadcastInjectiveTx(
       wallet,
       walletAddress,
-      msg,
+      msg as any,
       "Attest Token"
     );
     dispatch(setAttestTx({ id: tx.txHash, block: tx.height }));
@@ -617,7 +617,7 @@ async function sui(
       asset
     );
     const response = await wallet.signAndExecuteTransactionBlock({
-      transactionBlock: tx,
+      transactionBlock: tx as any,
       options: {
         showEvents: true,
       },
@@ -640,7 +640,7 @@ async function sui(
     const { sequence, emitterAddress } =
       getEmitterAddressAndSequenceFromResponseSui(
         coreBridgePackageId,
-        response
+        response as any
       );
     enqueueSnackbar(null, {
       content: <Alert severity="info">Fetching VAA</Alert>,

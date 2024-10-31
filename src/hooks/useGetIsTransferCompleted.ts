@@ -176,7 +176,7 @@ export default function useGetIsTransferCompleted(
         (async () => {
           try {
             transferCompleted = await getIsTransferCompletedAptos(
-              getAptosClient(),
+              getAptosClient() as any,
               getTokenBridgeAddressForChain(targetChain),
               signedVAA
             );
@@ -198,7 +198,7 @@ export default function useGetIsTransferCompleted(
               ALGORAND_HOST.algodPort
             );
             transferCompleted = await getIsTransferCompletedAlgorand(
-              algodClient,
+              algodClient as any,
               ALGORAND_TOKEN_BRIDGE_ID,
               signedVAA
             );
@@ -218,7 +218,7 @@ export default function useGetIsTransferCompleted(
             transferCompleted = await getIsTransferCompletedInjective(
               getTokenBridgeAddressForChain(targetChain),
               signedVAA,
-              client
+              client as any
             );
           } catch (error) {
             console.error(error);
@@ -236,7 +236,7 @@ export default function useGetIsTransferCompleted(
             transferCompleted = await getIsTransferCompletedSei(
               getTokenBridgeAddressForChain(targetChain),
               signedVAA,
-              client
+              client as any
             );
           } catch (error) {
             console.error(error);

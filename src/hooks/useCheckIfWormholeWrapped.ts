@@ -178,7 +178,7 @@ function useCheckIfWormholeWrapped(nft?: boolean) {
         try {
           const wrappedInfo = makeStateSafe(
             await getOriginalAssetAptos(
-              getAptosClient(),
+              getAptosClient() as any,
               getTokenBridgeAddressForChain(CHAIN_ID_APTOS),
               sourceAsset
             )
@@ -199,7 +199,7 @@ function useCheckIfWormholeWrapped(nft?: boolean) {
           );
           const wrappedInfo = makeStateSafe(
             await getOriginalAssetAlgorand(
-              algodClient,
+              algodClient as any,
               ALGORAND_TOKEN_BRIDGE_ID,
               BigInt(sourceAsset)
             )
@@ -213,7 +213,7 @@ function useCheckIfWormholeWrapped(nft?: boolean) {
         try {
           const client = getInjectiveWasmClient();
           const wrappedInfo = makeStateSafe(
-            await getOriginalAssetInjective(sourceAsset, client)
+            await getOriginalAssetInjective(sourceAsset, client as any)
           );
           if (!cancelled) {
             dispatch(setSourceWormholeWrappedInfo(wrappedInfo));

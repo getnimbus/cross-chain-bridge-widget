@@ -2,7 +2,6 @@ import {
   AptosSnapAdapter,
   AptosWalletAdapter,
   BitkeepWalletAdapter,
-  BloctoWalletAdapter,
   FewchaWalletAdapter,
   FletchWalletAdapter,
   MartianWalletAdapter,
@@ -14,15 +13,11 @@ import {
   useWallet,
   WalletProvider,
 } from "@manahippo/aptos-wallet-adapter";
-import { ReactChildren, useMemo } from "react";
+import { useMemo } from "react";
 
 export const useAptosContext = useWallet;
 
-export const AptosWalletProvider = ({
-  children,
-}: {
-  children: ReactChildren;
-}) => {
+export const AptosWalletProvider = ({ children }: { children: any }) => {
   const wallets = useMemo(
     () => [
       new AptosWalletAdapter(),
@@ -36,7 +31,6 @@ export const AptosWalletProvider = ({
       new AptosSnapAdapter(),
       new BitkeepWalletAdapter(),
       new TokenPocketWalletAdapter(),
-      new BloctoWalletAdapter(),
     ],
     []
   );

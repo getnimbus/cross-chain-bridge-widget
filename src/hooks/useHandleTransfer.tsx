@@ -236,7 +236,7 @@ async function algo(
       ALGORAND_HOST.algodPort
     );
     const txs = await transferFromAlgorand(
-      algodClient,
+      algodClient as any,
       ALGORAND_TOKEN_BRIDGE_ID,
       ALGORAND_BRIDGE_ID,
       senderAddr,
@@ -247,7 +247,7 @@ async function algo(
       feeParsed.toBigInt(),
       additionalPayload?.payload
     );
-    const result = await signSendAndConfirmAlgorand(algodClient, txs);
+    const result = await signSendAndConfirmAlgorand(algodClient as any, txs);
     const sequence = parseSequenceFromLogAlgorand(result);
     dispatch(
       setTransferTx({
@@ -748,7 +748,7 @@ async function injective(
     const tx = await broadcastInjectiveTx(
       wallet,
       walletAddress,
-      msgs,
+      msgs as any,
       "Wormhole - Initiate Transfer"
     );
     dispatch(setTransferTx({ id: tx.txHash, block: tx.height }));
@@ -913,7 +913,7 @@ async function sui(
       targetAddress
     );
     const response = await wallet.signAndExecuteTransactionBlock({
-      transactionBlock: tx,
+      transactionBlock: tx as any,
       options: {
         showEvents: true,
       },
@@ -936,7 +936,7 @@ async function sui(
     const { sequence, emitterAddress } =
       getEmitterAddressAndSequenceFromResponseSui(
         coreBridgePackageId,
-        response
+        response as any
       );
     console.log(emitterAddress, sequence);
     await fetchSignedVAA(

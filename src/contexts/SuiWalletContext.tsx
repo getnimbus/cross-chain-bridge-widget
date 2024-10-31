@@ -1,5 +1,8 @@
-import { WalletProvider } from "@suiet/wallet-kit";
-import { ReactChildren } from "react";
+import {
+  defineStashedWallet,
+  WalletProvider,
+  AllDefaultWallets,
+} from "@suiet/wallet-kit";
 
 // export const useSuiContext = () => {
 //   const [accounts, setAccounts] = useState<string[]>([]);
@@ -30,12 +33,19 @@ import { ReactChildren } from "react";
 //   };
 // };
 
-export const SuiWalletProvider = ({
-  children,
-}: {
-  children: ReactChildren;
-}) => {
-  return <WalletProvider autoConnect={false}> {children}</WalletProvider>;
+const stashedWalletConfig = defineStashedWallet({
+  appName: "Nimbus",
+});
+
+export const SuiWalletProvider = ({ children }: { children: any }) => {
+  return (
+    <WalletProvider
+      defaultWallets={[stashedWalletConfig, ...AllDefaultWallets]}
+      autoConnect={false}
+    >
+      {children}
+    </WalletProvider>
+  );
 };
 
 export default SuiWalletProvider;

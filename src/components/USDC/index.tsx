@@ -358,7 +358,7 @@ function USDC() {
     dispatch(setShouldRelay(!shouldRelay));
   }, [shouldRelay, dispatch]);
   const handleSliderChange = useCallback(
-    (event, value) => {
+    (event: any, value: any) => {
       dispatch(
         setToNativeAmount(
           parseUnits(value.toString(), USDC_DECIMALS).toString()
@@ -558,7 +558,7 @@ function USDC() {
     dispatch,
   ]);
   const handleAmountChange = useCallback(
-    (event) => {
+    (event: any) => {
       dispatch(setAmount(event.target.value));
     },
     [dispatch]

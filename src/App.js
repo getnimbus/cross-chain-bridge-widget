@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const { pathname } = useLocation();
-  const handleClusterChange = useCallback((event) => {
+  const handleClusterChange = useCallback((event: any) => {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set("cluster", event.target.value);
     window.location.search = urlParams;

@@ -116,7 +116,7 @@ export default function WithdrawTokensTerra() {
           <InputLabel>Token</InputLabel>
           <Select
             value={token}
-            onChange={(event) => {
+            onChange={(event: any) => {
               setToken(event.target.value as string);
             }}
           >

@@ -85,19 +85,19 @@ function Source() {
   const { isReady, statusMessage } = useIsWalletReady(sourceChain);
   const isTransferLimited = useIsTransferLimited();
   const handleSourceChange = useCallback(
-    (event) => {
+    (event: any) => {
       dispatch(setSourceChain(event.target.value));
     },
     [dispatch]
   );
   const handleTargetChange = useCallback(
-    (event) => {
+    (event: any) => {
       dispatch(setTargetChain(event.target.value));
     },
     [dispatch]
   );
   const handleAmountChange = useCallback(
-    (event) => {
+    (event: any) => {
       dispatch(setAmount(event.target.value));
     },
     [dispatch]

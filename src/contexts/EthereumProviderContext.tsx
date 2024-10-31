@@ -2,7 +2,6 @@ import detectEthereumProvider from "@metamask/detect-provider";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { BigNumber, ethers } from "ethers";
 import React, {
-  ReactChildren,
   useCallback,
   useContext,
   useEffect,
@@ -52,11 +51,7 @@ const EthereumProviderContext = React.createContext<IEthereumProviderContext>({
   connectType: undefined,
 });
 
-export const EthereumProviderProvider = ({
-  children,
-}: {
-  children: ReactChildren;
-}) => {
+export const EthereumProviderProvider = ({ children }: { children: any }) => {
   const [providerError, setProviderError] = useState<string | null>(null);
   const [provider, setProvider] = useState<Provider>(undefined);
   const [chainId, setChainId] = useState<number | undefined>(undefined);

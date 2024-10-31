@@ -107,9 +107,9 @@ import useAttestSignedVAA from "./useAttestSignedVAA";
 import { getSuiProvider } from "../utils/sui";
 import {
   JsonRpcProvider,
+  getPublishedObjectChanges,
   SUI_CLOCK_OBJECT_ID,
   TransactionBlock,
-  getPublishedObjectChanges,
 } from "@mysten/sui.js";
 import { sleep } from "../utils/sleep";
 import {
@@ -186,13 +186,13 @@ async function algo(
       ALGORAND_HOST.algodPort
     );
     const txs = await createWrappedOnAlgorand(
-      algodClient,
+      algodClient as any,
       ALGORAND_TOKEN_BRIDGE_ID,
       ALGORAND_BRIDGE_ID,
       senderAddr,
       signedVAA
     );
-    const result = await signSendAndConfirmAlgorand(algodClient, txs);
+    const result = await signSendAndConfirmAlgorand(algodClient as any, txs);
     dispatch(
       setCreateTx({
         id: txs[txs.length - 1].tx.txID(),
@@ -500,7 +500,7 @@ async function injective(
     const tx = await broadcastInjectiveTx(
       wallet,
       walletAddress,
-      msg,
+      msg as any,
       "Wormhole - Create Wrapped"
     );
     dispatch(setCreateTx({ id: tx.txHash, block: tx.height }));
@@ -573,7 +573,7 @@ async function sui(
         signedVAA
       );
       response = await wallet.signAndExecuteTransactionBlock({
-        transactionBlock: suiUpdateWrappedTxPayload,
+        transactionBlock: suiUpdateWrappedTxPayload as any,
         options: {
           showEvents: true,
         },
@@ -588,7 +588,7 @@ async function sui(
       );
       const suiPrepareRegistrationTxRes =
         await wallet.signAndExecuteTransactionBlock({
-          transactionBlock: suiPrepareRegistrationTxPayload,
+          transactionBlock: suiPrepareRegistrationTxPayload as any,
           options: {
             showObjectChanges: true,
           },
@@ -607,14 +607,15 @@ async function sui(
         throw new Error("Error parsing wrappedAssetSetupType");
       }
       const publishEvents = getPublishedObjectChanges(
-        suiPrepareRegistrationTxRes
+        suiPrepareRegistrationTxRes as any
       );
       if (publishEvents.length < 1) {
         throw new Error("Error parsing publishEvents");
       }
       const coinPackageId = publishEvents[0].packageId;
       let attempts = 0;
-      let suiCompleteRegistrationTxPayload: TransactionBlock | null = null;
+      let suiCompleteRegistrationTxPayload: TransactionBlock | null | any =
+        null;
       while (!suiCompleteRegistrationTxPayload) {
         try {
           suiCompleteRegistrationTxPayload = await createWrappedOnSui(
@@ -638,7 +639,7 @@ async function sui(
       }
 
       response = await wallet.signAndExecuteTransactionBlock({
-        transactionBlock: suiCompleteRegistrationTxPayload,
+        transactionBlock: suiCompleteRegistrationTxPayload as any,
         options: {
           showEvents: true,
         },

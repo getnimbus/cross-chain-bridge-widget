@@ -195,7 +195,7 @@ function useFetchTargetAsset(nft?: boolean) {
           const tokenBridgeAddress =
             getTokenBridgeAddressForChain(CHAIN_ID_INJECTIVE);
           const tokenId = await queryExternalIdInjective(
-            client,
+            client as any,
             tokenBridgeAddress,
             originAsset || ""
           );
@@ -214,7 +214,7 @@ function useFetchTargetAsset(nft?: boolean) {
           const tokenBridgeAddress =
             getTokenBridgeAddressForChain(CHAIN_ID_SEI);
           const tokenId = await queryExternalIdSei(
-            client,
+            client as any,
             tokenBridgeAddress,
             originAsset || ""
           );
@@ -230,7 +230,7 @@ function useFetchTargetAsset(nft?: boolean) {
           }
         } else if (originChain === CHAIN_ID_APTOS) {
           const tokenId = await getTypeFromExternalAddress(
-            getAptosClient(),
+            getAptosClient() as any,
             getTokenBridgeAddressForChain(CHAIN_ID_APTOS),
             originAsset || ""
           );
@@ -455,7 +455,7 @@ function useFetchTargetAsset(nft?: boolean) {
         dispatch(setTargetAsset(fetchDataWrapper()));
         try {
           const asset = await getForeignAssetAptos(
-            getAptosClient(),
+            getAptosClient() as any,
             getTokenBridgeAddressForChain(targetChain),
             originChain,
             originAsset
@@ -493,7 +493,7 @@ function useFetchTargetAsset(nft?: boolean) {
             ALGORAND_HOST.algodPort
           );
           const asset = await getForeignAssetAlgorand(
-            algodClient,
+            algodClient as any,
             ALGORAND_TOKEN_BRIDGE_ID,
             originChain,
             originAsset
@@ -528,7 +528,7 @@ function useFetchTargetAsset(nft?: boolean) {
           const client = getInjectiveWasmClient();
           const asset = await getForeignAssetInjective(
             getTokenBridgeAddressForChain(targetChain),
-            client,
+            client as any,
             originChain,
             hexToUint8Array(originAsset)
           );
@@ -558,7 +558,7 @@ function useFetchTargetAsset(nft?: boolean) {
           const client = await getSeiWasmClient();
           const asset = await getForeignAssetSei(
             getTokenBridgeAddressForChain(targetChain),
-            client,
+            client as any,
             originChain,
             hexToUint8Array(originAsset)
           );

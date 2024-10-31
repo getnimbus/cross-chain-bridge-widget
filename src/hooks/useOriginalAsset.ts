@@ -107,20 +107,20 @@ export async function getOriginalAssetToken(
         ALGORAND_HOST.algodPort
       );
       promise = await getOriginalAssetAlgorand(
-        algodClient,
+        algodClient as any,
         ALGORAND_TOKEN_BRIDGE_ID,
         BigInt(foreignNativeStringAddress)
       );
     } else if (foreignChain === CHAIN_ID_APTOS) {
       promise = await getOriginalAssetAptos(
-        getAptosClient(),
+        getAptosClient() as any,
         getTokenBridgeAddressForChain(CHAIN_ID_APTOS),
         foreignNativeStringAddress
       );
     } else if (foreignChain === CHAIN_ID_INJECTIVE) {
       promise = await getOriginalAssetInjective(
         foreignNativeStringAddress,
-        getInjectiveWasmClient()
+        getInjectiveWasmClient() as any
       );
     } else if (foreignChain === CHAIN_ID_NEAR && nearAccountId) {
       const provider = makeNearProvider();
@@ -314,7 +314,7 @@ function useOriginalAsset(
             ).then((tokenId) => setOriginAddress(tokenId || null));
           } else if (result.chainId === CHAIN_ID_APTOS) {
             getTypeFromExternalAddress(
-              getAptosClient(),
+              getAptosClient() as any,
               getTokenBridgeAddressForChain(CHAIN_ID_APTOS),
               uint8ArrayToHex(result.assetAddress)
             ).then((tokenId) => setOriginAddress(tokenId || null));
@@ -324,7 +324,7 @@ function useOriginalAsset(
               result.chainId
             );
             queryExternalIdInjective(
-              client,
+              client as any,
               tokenBridgeAddress,
               uint8ArrayToHex(result.assetAddress)
             ).then((tokenId) => setOriginAddress(tokenId));

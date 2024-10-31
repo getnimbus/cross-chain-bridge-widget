@@ -124,7 +124,7 @@ function Target() {
     );
   useSyncTargetAddress(!shouldLockFields);
   const handleTargetChange = useCallback(
-    (event) => {
+    (event: any) => {
       dispatch(setTargetChain(event.target.value));
     },
     [dispatch]

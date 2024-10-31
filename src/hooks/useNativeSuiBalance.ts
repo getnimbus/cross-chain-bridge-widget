@@ -25,11 +25,11 @@ export default function useSuiNativeBalance(
         .getBalance({
           owner: address,
         })
-        .then((coinBalance) => {
+        .then((coinBalance: any) => {
           setIsLoading(false);
           setBalance(BigInt(coinBalance.totalBalance));
         })
-        .catch((e) => {
+        .catch((e: any) => {
           console.error(e);
           setIsLoading(false);
           setBalance(undefined);

@@ -14,7 +14,7 @@ const fetchSingleMetadata = async (
   coinType: string,
   provider: JsonRpcProvider
 ) =>
-  provider.getCoinMetadata({ coinType }).then((response) => {
+  provider.getCoinMetadata({ coinType }).then((response: any) => {
     if (!response) {
       throw new Error("Error fetching metdata");
     }

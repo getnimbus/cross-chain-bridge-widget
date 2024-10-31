@@ -38,7 +38,7 @@ export async function signSendAndConfirmAlgorand(
   }
   await algodClient.sendRawTransaction(signedTxns).do();
   const result = await waitForConfirmation(
-    algodClient,
+    algodClient as any,
     txs[txs.length - 1].tx.txID(),
     ALGORAND_WAIT_FOR_CONFIRMATIONS
   );

@@ -65,7 +65,7 @@ export async function postWithFeesXpla(
     memo,
     feeDenoms,
     gasPrices,
-    fee: feeEstimate,
+    fee: feeEstimate as any,
   });
 
   return result;

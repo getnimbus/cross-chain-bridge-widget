@@ -1,6 +1,5 @@
 import {
   createContext,
-  ReactChildren,
   useCallback,
   useContext,
   useMemo,
@@ -42,11 +41,7 @@ export const SUPPORTED_WALLETS: InjectiveWalletInfo[] = [
   },
 ];
 
-export const InjectiveWalletProvider = ({
-  children,
-}: {
-  children: ReactChildren;
-}) => {
+export const InjectiveWalletProvider = ({ children }: { children: any }) => {
   const [wallet, setWallet] = useState<WalletStrategy | null>(null);
   const [address, setAddress] = useState<string | null>(null);
 
@@ -89,7 +84,7 @@ export const InjectiveWalletProvider = ({
     let cancelled = false;
     (async () => {
       try {
-        await wallet?.disconnectWallet();
+        await (wallet as any)?.disconnectWallet();
       } catch (e) {
         console.error(e);
       }

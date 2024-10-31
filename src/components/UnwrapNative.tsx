@@ -164,7 +164,7 @@ function UnwrapNative() {
   );
   const { signer } = useEthereumProvider();
   const { isReady, statusMessage } = useIsWalletReady(selectedChainId);
-  const handleSelect = useCallback((event) => {
+  const handleSelect = useCallback((event: any) => {
     setSelectedChainId(parseInt(event.target.value) as SupportedChain);
   }, []);
   useEffect(() => {

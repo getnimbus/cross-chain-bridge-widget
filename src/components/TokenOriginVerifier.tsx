@@ -207,7 +207,7 @@ export default function TokenOriginVerifier() {
   );
 
   const handlePrimaryLookupChainChange = useCallback(
-    (e) => {
+    (e: any) => {
       setPrimaryLookupChain(e.target.value);
       if (secondaryLookupChain === e.target.value) {
         setSecondaryLookupChain(
@@ -218,10 +218,11 @@ export default function TokenOriginVerifier() {
     },
     [secondaryLookupChain]
   );
-  const handleSecondaryLookupChainChange = useCallback((e) => {
-    setSecondaryLookupChain(e.target.value);
+  const handleSecondaryLookupChainChange = useCallback((event: any) => {
+    setSecondaryLookupChain(event.target.value);
   }, []);
-  const handlePrimaryLookupAssetChange = useCallback((event) => {
+
+  const handlePrimaryLookupAssetChange = useCallback((event: any) => {
     setPrimaryLookupAsset(event.target.value);
   }, []);
 

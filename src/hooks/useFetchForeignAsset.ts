@@ -172,7 +172,7 @@ function useFetchForeignAsset(
         : foreignChain === CHAIN_ID_APTOS
         ? () => {
             return getForeignAssetAptos(
-              getAptosClient(),
+              getAptosClient() as any,
               getTokenBridgeAddressForChain(foreignChain),
               originChain,
               originAssetHex
@@ -196,7 +196,7 @@ function useFetchForeignAsset(
               ALGORAND_HOST.algodPort
             );
             return getForeignAssetAlgorand(
-              algodClient,
+              algodClient as any,
               ALGORAND_TOKEN_BRIDGE_ID,
               originChain,
               originAssetHex
@@ -207,7 +207,7 @@ function useFetchForeignAsset(
             const client = getInjectiveWasmClient();
             return getForeignAssetInjective(
               getTokenBridgeAddressForChain(foreignChain),
-              client,
+              client as any,
               originChain,
               hexToUint8Array(originAssetHex)
             );
@@ -217,7 +217,7 @@ function useFetchForeignAsset(
             const client = await getSeiWasmClient();
             return getForeignAssetSei(
               getTokenBridgeAddressForChain(foreignChain),
-              client,
+              client as any,
               originChain,
               hexToUint8Array(originAssetHex)
             );

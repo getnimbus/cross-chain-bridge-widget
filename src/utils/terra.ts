@@ -115,7 +115,7 @@ export async function postWithFees(
     memo,
     feeDenoms,
     gasPrices,
-    fee: feeEstimate,
+    fee: feeEstimate as any,
     // @ts-ignore, https://github.com/terra-money/terra.js/pull/295 (adding isClassic property)
     isClassic: lcd.config.isClassic,
   });

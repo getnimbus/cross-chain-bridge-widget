@@ -1,5 +1,4 @@
 import { NetworkInfo, WalletProvider } from "@xpla/wallet-provider";
-import { ReactChildren } from "react";
 
 const testnet: NetworkInfo = {
   name: "testnet",
@@ -12,11 +11,7 @@ const walletConnectChainIds: Record<number, NetworkInfo> = {
   0: testnet,
 };
 
-export const XplaWalletProvider = ({
-  children,
-}: {
-  children: ReactChildren;
-}) => {
+export const XplaWalletProvider = ({ children }: { children: any }) => {
   return (
     <WalletProvider
       defaultNetwork={testnet}
